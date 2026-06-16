@@ -1,0 +1,27 @@
+# Python Virtual Environment
+venv/
+.venv/
+env/
+ENV/
+
+# Python Cache
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Application Cache
+feed_cache.json
+
+# Operating System files
+.DS_Store
+Thumbs.db
+
+# IDEs and Editors
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
