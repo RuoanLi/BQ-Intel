@@ -1,86 +1,86 @@
 # BigQuery Release Pulse 🚀
 
-一个专为 Google Cloud BigQuery 开发者与布道师设计的发布日志追踪与推文生成 Web 应用程序。它能拉取最新的 BigQuery 官方 Release Notes，智能拆分为独立的更新卡片，并提供搜索、过滤以及一键生成/发布 X (Twitter) 推文的强大交互功能。
+A premium, highly interactive dashboard application designed for Google Cloud BigQuery developers and advocates. It fetches the latest official BigQuery Release Notes, parses them into standalone update cards, and offers powerful search, categorization, and one-click X (Twitter) draft generation and sharing.
 
 ---
 
-## 🌟 核心功能
+## 🌟 Key Features
 
-*   **实时数据同步 (Feed Ingestion)**：直接获取 Google Cloud BigQuery 官方 Atom 订阅源。
-*   **多维度拆分解析**：攻克了官方 Feed 将单日多条不同类型的日志合并在同一个节点内的弊端。后端自动通过正则定位 `<h3>` 标识，打散重组为单条卡片。
-*   **智能缓存机制**：5 分钟本地文件级缓存 (`feed_cache.json`)，避免高频请求官方服务，提供极致的页面加载速度，同时支持前端手动点击 Refresh 强制同步。
-*   **客户端动态筛选**：
-    *   **关键词搜索**：即时响应关键字匹配（正文、日期、类型）。
-    *   **分类过滤**：点击顶部数值卡片或过滤标签，瞬间过滤 Feature、Change、Issue、Announcement、Breaking 等类型的更新。
-*   **拟真推文草稿编辑器**：
-    *   根据更新类型自动匹配主题 Emoji (如 🚀, 📢, 🚨)。
-    *   智能控制字数，确保加上原始文档链接后整条推文严格控制在 **280字符以内**。
-    *   实时字数计数与溢出警告。
-    *   一键复制草稿或直接拉起官方 X 网页端发布界面 (`twitter/intent`)。
-*   **极客感深色美学设计**：
-    *   采用 **Outfit** (标题) 与 **Inter** (正文) 现代化字体体系。
-    *   毛玻璃视效面板 (`backdrop-filter`) 与极具科技感的呼吸指示灯、背景渐变霓虹光圈。
-    *   CSS 骨架屏载入效果与平滑的过渡微动画。
-
----
-
-## 🛠️ 技术栈
-
-*   **后端 (Backend)**：Python 3.9+ / Flask / Requests (无额外臃肿的 RSS 解析依赖，完全使用轻量级 ElementTree 精准提取)
-*   **前端 (Frontend)**：HTML5 语义化结构 / Vanilla CSS3 (原生 CSS 变量、Grid、Flexbox、自适应布局) / 纯原生 JavaScript (ES6 Fetch, 异步状态管理)
-*   **图标系统**：嵌入式 SVG (免网络请求，免引入第三方图标库，性能卓越)
+*   **Real-Time Feed Syncing**: Fetches the official Google Cloud BigQuery Atom feed directly.
+*   **Granular Update Parsing**: Solves the limitation where the official feed aggregates multiple disparate updates under a single daily entry. The backend splits updates using `<h3>` markers into separate, clean cards.
+*   **High-Performance In-Memory Cache**: Implements a 5-minute file-based cache (`feed_cache.json`) to minimize official endpoint hits, ensuring instantaneous load times. Supports manual force-refresh.
+*   **Client-Side Instant Filtering**:
+    *   **Keyword Search**: Instantly matches queries against card content, dates, and types.
+    *   **Category Toggles**: Click top stat cards or category chips to filter features, changes, issues, announcements, or breaking changes instantly.
+*   **Immersive Tweet Draft Composer**:
+    *   Auto-assigns relevant emojis (🚀, 📢, 🚨) based on update categories.
+    *   Smart character controller clips draft bodies dynamically to fit within X's **280-character limit** alongside links.
+    *   Real-time length checks and overflow indicators.
+    *   One-click text copy or direct post intent launching.
+*   **Futuristic Cyberpunk Aesthetic**:
+    *   Modern web typography using **Outfit** (Headers) and **Inter** (Body text).
+    *   Translucent glassmorphism containers (`backdrop-filter`) with thin borders and neon glow backdrops.
+    *   Keyframe loading skeleton cards, pulse status indicators, and rotate loading animations.
 
 ---
 
-## 📂 项目结构
+## 🛠️ Technology Stack
+
+*   **Backend**: Python 3.9+ / Flask / Requests (no bulky RSS parser dependencies, utilizes built-in light `ElementTree` parsing).
+*   **Frontend**: Semantic HTML5 / Vanilla CSS3 (CSS custom properties, Grid, Flexbox, Keyframes) / ES6+ JavaScript (Fetch API, asynchronous state controls).
+*   **Asset System**: Inline SVG icons (self-contained, no external calls, high performance).
+
+---
+
+## 📂 Project Directory Structure
 
 ```text
 bigquery_release_notes/
-├── app.py               # Flask 后端核心，提供 API 服务、XML 解析及本地缓存
-├── feed_cache.json      # 运行期间自动生成的本地缓存文件 (已在 .gitignore 中忽略)
-├── .gitignore           # 忽略 venv、缓存文件及 IDE 配置文件
-├── README.md            # 本项目说明文档
+├── app.py               # Flask backend for feed syncing, parser engine, and cache
+├── feed_cache.json      # Auto-generated local cache data (git-ignored)
+├── .gitignore           # File exclusion mapping
+├── README.md            # English project documentation
 ├── templates/
-│   └── index.html       # 语义化前端页面骨架与 Tweet 弹窗组件
+│   └── index.html       # Single-page HTML skeleton and tweet modal overlay
 └── static/
-    ├── app.js           # 客户端交互、状态更新、推文自适应裁剪及事件监听
-    └── style.css        # 现代化深色毛玻璃主题及动效样式
+    ├── app.js           # Client-side routing, filters, state, and tweet builder
+    └── style.css        # Premium stylesheets and responsive layout adjustments
 ```
 
 ---
 
-## ⚡ 快速开始
+## ⚡ Quick Start
 
-### 1. 克隆/定位项目目录
-首先确保进入项目目录：
+### 1. Position the Directory
+Ensure you are in the project folder:
 ```bash
 cd bigquery_release_notes
 ```
 
-### 2. 初始化虚拟环境并安装依赖
+### 2. Setup Virtual Environment and Dependencies
 ```bash
-# 创建虚拟环境
+# Initialize venv
 python3 -m venv venv
 
-# 激活虚拟环境 (macOS/Linux)
+# Activate venv (macOS/Linux)
 source venv/bin/activate
 
-# 安装依赖包
+# Install requirements
 pip install flask requests
 ```
 
-### 3. 运行 Web 服务器
+### 3. Start the Flask Server
 ```bash
 python3 app.py
 ```
-默认情况下，Flask 服务将在本地端口 `5001` 启动运行，以规避 macOS 控制中心默认占用 5000 端口的问题。
+*Note: The Flask application binds to port `5001` by default to avoid conflicts with macOS AirPlay Receiver services.*
 
-### 4. 浏览器访问
-在浏览器中打开：
+### 4. Open Application
+Go to your browser of choice and visit:
 👉 **[http://localhost:5001](http://localhost:5001)**
 
 ---
 
-## 🔒 许可证
+## 🔒 License
 
-本项目基于 MIT 许可证开源。
+This project is open-sourced under the MIT License.
