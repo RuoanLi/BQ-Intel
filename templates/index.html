@@ -40,21 +40,28 @@
                     </svg>
                 </div>
                 <div class="title-sub">
-                    <h1>BigQuery Release Pulse</h1>
-                    <p>Track the latest Google Cloud BigQuery releases and share them instantly</p>
+                    <h1 data-key="title">BigQuery Release Pulse</h1>
+                    <p data-key="subtitle">Track the latest Google Cloud BigQuery releases and share them instantly</p>
                 </div>
             </div>
             
             <div class="header-right">
+                <!-- Language Switcher -->
+                <div class="lang-switcher">
+                    <button id="lang-en-btn" class="lang-btn active">EN</button>
+                    <span class="lang-separator">|</span>
+                    <button id="lang-zh-btn" class="lang-btn">中文</button>
+                </div>
+                
                 <div class="status-indicator">
                     <span class="status-dot"></span>
-                    <span id="status-text">Checking feed...</span>
+                    <span id="status-text" data-key="statusChecking">Checking feed...</span>
                 </div>
                 <button id="refresh-btn" class="btn btn-primary" title="Refresh feed content">
                     <svg class="icon spinner-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
                     </svg>
-                    <span>Refresh</span>
+                    <span data-key="refresh">Refresh</span>
                 </button>
             </div>
         </header>
@@ -63,23 +70,23 @@
         <section class="stats-bar">
             <div class="stat-card" data-filter="all">
                 <div class="stat-num" id="stat-total">0</div>
-                <div class="stat-label">Total Updates</div>
+                <div class="stat-label" data-key="totalUpdates">Total Updates</div>
             </div>
             <div class="stat-card" data-filter="Feature">
                 <div class="stat-num color-feature" id="stat-features">0</div>
-                <div class="stat-label">Features</div>
+                <div class="stat-label" data-key="features">Features</div>
             </div>
             <div class="stat-card" data-filter="Change">
                 <div class="stat-num color-change" id="stat-changes">0</div>
-                <div class="stat-label">Changes</div>
+                <div class="stat-label" data-key="changes">Changes</div>
             </div>
             <div class="stat-card" data-filter="Issue">
                 <div class="stat-num color-issue" id="stat-issues">0</div>
-                <div class="stat-label">Issues</div>
+                <div class="stat-label" data-key="issues">Issues</div>
             </div>
             <div class="stat-card" data-filter="Announcement">
                 <div class="stat-num color-announcement" id="stat-announcements">0</div>
-                <div class="stat-label">Announcements</div>
+                <div class="stat-label" data-key="announcements">Announcements</div>
             </div>
         </section>
 
@@ -100,14 +107,14 @@
             </div>
             
             <div class="filters-container">
-                <span class="filter-title">Filter:</span>
+                <span class="filter-title" data-key="filterLabel">Filter:</span>
                 <div class="filter-chips">
-                    <button class="chip active" data-filter="all">All</button>
-                    <button class="chip" data-filter="Feature">Features</button>
-                    <button class="chip" data-filter="Change">Changes</button>
-                    <button class="chip" data-filter="Issue">Issues</button>
-                    <button class="chip" data-filter="Announcement">Announcements</button>
-                    <button class="chip" data-filter="Breaking">Breaking</button>
+                    <button class="chip active" data-filter="all" data-key="all">All</button>
+                    <button class="chip" data-filter="Feature" data-key="features">Features</button>
+                    <button class="chip" data-filter="Change" data-key="changes">Changes</button>
+                    <button class="chip" data-filter="Issue" data-key="issues">Issues</button>
+                    <button class="chip" data-filter="Announcement" data-key="announcements">Announcements</button>
+                    <button class="chip" data-filter="Breaking" data-key="breaking">Breaking</button>
                 </div>
             </div>
         </section>
@@ -130,8 +137,8 @@
                     <circle cx="12" cy="12" r="10"></circle>
                     <line x1="8" y1="12" x2="16" y2="12"></line>
                 </svg>
-                <h3>No updates found</h3>
-                <p>Try adjusting your search terms or filters, or hit refresh to pull the latest feed.</p>
+                <h3 data-key="noUpdatesTitle">No updates found</h3>
+                <p data-key="noUpdatesDesc">Try adjusting your search terms or filters, or hit refresh to pull the latest feed.</p>
             </div>
 
             <!-- Feed Grid -->
@@ -142,7 +149,7 @@
 
         <!-- Footer -->
         <footer class="app-footer-bar">
-            <p>BigQuery Release Pulse &bull; Built with Flask &amp; Vanilla Web Stack &bull; Google Cloud Release Notes Feed</p>
+            <p data-key="footerText">BigQuery Release Pulse &bull; Built with Flask &amp; Vanilla Web Stack &bull; Google Cloud Release Notes Feed</p>
         </footer>
     </div>
 
@@ -150,7 +157,7 @@
     <div id="tweet-modal" class="modal-overlay">
         <div class="modal-content">
             <div class="modal-header">
-                <h2>Draft Tweet</h2>
+                <h2 data-key="modalHeader">Draft Tweet</h2>
                 <button id="close-modal-btn" class="close-modal-btn" title="Close">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -183,7 +190,7 @@
                     </div>
                 </div>
                 
-                <div id="char-warning" class="modal-warning" style="display: none;">
+                <div id="char-warning" class="modal-warning" style="display: none;" data-key="modalWarning">
                     ⚠️ Warning: Tweet exceeds X's standard character limit of 280 characters.
                 </div>
             </div>
@@ -194,13 +201,13 @@
                         <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
                         <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
                     </svg>
-                    <span id="copy-tweet-text">Copy Text</span>
+                    <span id="copy-tweet-text" data-key="btnCopyText">Copy Text</span>
                 </button>
                 <button id="post-tweet-btn" class="btn btn-primary btn-tweet">
                     <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
                     </svg>
-                    <span>Post to X</span>
+                    <span data-key="btnPostX">Post to X</span>
                 </button>
             </div>
         </div>
