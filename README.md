@@ -83,4 +83,3 @@ bigquery_release_notes/
 2. **初始化环境**：`python3 -m venv venv && source venv/bin/activate`
 3. **安装依赖**：`pip install flask requests`
 4. **运行服务**：`python3 app.py`（服务将在本地端口 `5001` 启动运行，防止被 macOS 系统服务占用）。
-5. **浏览器访问**：**[http://localhost:5001](http://localhost:5001)**
